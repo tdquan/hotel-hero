@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	devise_group :user, contains: [:hotelier, :vendor, :user]
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	before_action :authenticate_user!
 

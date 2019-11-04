@@ -1,0 +1,3 @@
+class Hotelier < User
+
+end

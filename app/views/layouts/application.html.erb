@@ -4,12 +4,12 @@
     <title>HotelHero</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/1865247e87.js"></script>
   </head>
 
   <body>
+    <%= render 'shared/navbar' %>
     <%= render 'shared/notices' %>
     <%= yield %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
