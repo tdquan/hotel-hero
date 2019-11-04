@@ -16,10 +16,12 @@
 			<% unless @softwares.include?(@software) %>
 				<% path = @suite.id ? h_software_suite_path : h_software_suites_path %>
 				<%= simple_form_for @suite, url: path do |f| %>
-					<%= f.input :category, input_html: { value: @suite.category, label: false } %>
+					<%= f.hidden_field :category, input_html: { value: @suite.category } %>
+					<%= f.hidden_field :id, input_html: { value: @suite.id } %>
 					<%= f.simple_fields_for @subscription do |s| %>
 						<%= s.input :payment_scheme, as: :select, collection: %i[One-time Monthly Annually], prompt: "Select a payment scheme", required: true, label: false %>
 					<% end %>
+					<%= f.input :software_id, input_html: { value: @software.id, type: "hidden" }, label: false %>
 					<%= f.submit "Add Software", class: "btn btn-primary" %>
 					<%= link_to "Back", h_softwares_path, class: "btn btn-outline-secondary" %>
 				<% end %>

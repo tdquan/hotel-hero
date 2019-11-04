@@ -1,30 +1,27 @@
 class H::SoftwareSuitesController < ApplicationController
 	def create
 		@suite = current_hotelier.software_suites.new(suite_params)
-		@suite.subscriptions.new(payment_scheme: params[:software_suite][:subscription][:payment_scheme])
+		@software = Software.find(params[:software_suite][:software_id])
+		@suite.subscriptions.new(payment_scheme: params[:software_suite][:subscription][:payment_scheme], software_id: @software.id)
 		if @suite.save
 			flash[:notice] = "Software added"
 			redirect_to h_softwares_path
 		else
-			@softwares = current_hotelier.softwares
-			@software = Software.find(params[:software_suite][:subscription][:software_id])
-			@suite = current_hotelier.software_suites.find_or_initialize_by(category: @software.category)
-			@subscription = @suite.subscriptions.new(software_id: @software.id)
-			render template: "h/softwares/show"
+			flash[:alert] = "Failed to add software"
+			redirect_to h_software_path(@software)
 		end
 	end
 
 	def update
-		@suite = SoftwareSuite.find(params[:id])
+		@suite = SoftwareSuite.find(params[:software_suite][:id])
+		@software = Software.find(params[:software_suite][:software_id])
+		@subscription = @suite.subscriptions.new(payment_scheme: params[:software_suite][:subscription][:payment_scheme], software_id: @software.id)
 		if @suite.update(suite_params)
 			flash[:notice] = "Software added"
 			redirect_to h_softwares_path
 		else
-			@softwares = current_hotelier.softwares
-			@software = Software.find(params[:software_suite][:subscription_attributes][:software_id])
-			@suite = current_hotelier.software_suites.find_or_initialize_by(category: @software.category)
-			@subscription = @suite.subscriptions.new(software_id: @software.id)
-			render template: "h/softwares/show"
+			flash[:alert] = "Failed to add software"
+			redirect_to h_software_path(@software)
 		end
 	end
 
