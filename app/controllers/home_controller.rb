@@ -9,5 +9,7 @@ class HomeController < ApplicationController
 	end
 
 	def vendor_dashboard
+		@softwares = current_vendor.softwares
+		@sorted = @softwares.group_by { |software| software.category }
 	end
 end
