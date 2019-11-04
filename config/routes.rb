@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   authenticated :hotelier, lambda { |h| h.hotelier? } do
 		root to: 'home#hotelier_dashboard', as: 'hotelier_dashboard'
     namespace :h do
-      resources :software_suites, only: [:create, :update, :delete]
+      resources :software_suites, only: [:create, :update]
       resources :softwares, only: [:index, :show]
     end
   end
@@ -18,7 +18,13 @@ Rails.application.routes.draw do
   authenticated :vendor, lambda { |v| v.vendor? } do
 		root to: 'home#vendor_dashboard', as: 'vendor_dashboard'
     namespace :v do
-      resources :softwares, only: [:new, :create, :delete]
+      resources :softwares, only: [:new, :create]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :softwares, only: [:index, :create]
     end
   end
 
