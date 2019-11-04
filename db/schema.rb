@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_025616) do
 
   create_table "software_suites", force: :cascade do |t|
     t.string "name"
-    t.string "category"
+    t.string "category", null: false
     t.bigint "hotelier_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 2019_11_04_025616) do
   end
 
   create_table "softwares", force: :cascade do |t|
-    t.string "name"
-    t.string "category"
+    t.string "name", null: false
+    t.string "category", null: false
+    t.string "version"
+    t.string "logo_url"
     t.bigint "vendor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_025616) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "regularity"
+    t.integer "payment_scheme"
     t.bigint "software_id", null: false
     t.bigint "software_suite_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -48,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_025616) do
     t.string "encrypted_password", default: "", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "name"
     t.string "type"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
