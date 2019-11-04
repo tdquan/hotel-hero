@@ -9,6 +9,14 @@
         <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
       </div>
 
+      <div class="form-group">
+        <%= f.text_field :first_name, autofocus: false, class: 'form-control', placeholder: "First Name" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :last_name, autofocus: false, class: 'form-control', placeholder: "Last Name" %>
+      </div>
+
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
