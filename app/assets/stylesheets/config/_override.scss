@@ -3,4 +3,13 @@ $container-max-widths: (
   md: 720px,
   lg: 960px,
   xl: 960px
-)
+);
+
+a {
+	* {
+		color: black !important;
+	}
+	&:hover {
+		text-decoration: none !important;
+	}
+}

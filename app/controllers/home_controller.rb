@@ -1,11 +1,7 @@
 class HomeController < ApplicationController
-	def index
-	end
-
-	def dashboard
-	end
-
 	def hotelier_dashboard
+		@suites = current_hotelier.software_suites.includes(:softwares)
+		@sorted = @suites.group_by { |suite| suite.category }
 	end
 
 	def vendor_dashboard

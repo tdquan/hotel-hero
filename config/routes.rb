@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   authenticated :hotelier, lambda { |h| h.hotelier? } do
 		root to: 'home#hotelier_dashboard', as: 'hotelier_dashboard'
     namespace :h do
-      resources :software_suites, only: [:new, :create, :delete]
+      resources :software_suites, only: [:create, :update, :delete]
+      resources :softwares, only: [:index, :show]
     end
   end
 

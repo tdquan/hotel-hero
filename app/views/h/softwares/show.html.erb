@@ -1,0 +1,31 @@
+<div class="row my-5">
+	<div class="col-sm-3">
+		<div class="card">
+	    <%= image_tag @software.logo_url, class: "card-img-top p-3" %>
+	  </div>
+	</div>
+	<div class="col-sm-9">
+			<section class="mb-5">
+				<h3 class="mb-5"><%= @software.name %></h3>
+				<small class="text-muted">Category: <%= @software.category %></small>
+				<hr>
+				<h2 class="mb-3">Description</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, fugit. Ratione dolorum delectus vel aut iste adipisci expedita non magnam itaque, numquam at, iusto? Assumenda consequuntur nam aliquid, nihil optio.</p>
+			</section>
+			<hr>
+			<% unless @softwares.include?(@software) %>
+				<% path = @suite.id ? h_software_suite_path : h_software_suites_path %>
+				<%= simple_form_for @suite, url: path do |f| %>
+					<%= f.input :category, input_html: { value: @suite.category, label: false } %>
+					<%= f.simple_fields_for @subscription do |s| %>
+						<%= s.input :payment_scheme, as: :select, collection: %i[One-time Monthly Annually], prompt: "Select a payment scheme", required: true, label: false %>
+					<% end %>
+					<%= f.submit "Add Software", class: "btn btn-primary" %>
+					<%= link_to "Back", h_softwares_path, class: "btn btn-outline-secondary" %>
+				<% end %>
+			<% else %>
+				<%= link_to "Back", h_softwares_path, class: "btn btn-outline-secondary" %>
+			<% end %>
+	</div>
+</div>
+

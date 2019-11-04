@@ -1,4 +1,4 @@
-categories = ["Human Resource", "Booking Managment", "Marketing", "Accounting", "Operations", "Guest Services", "F&B", "IT", "MICE"]
+categories = ["Human Resource", "Booking Management", "Marketing", "Accounting", "Operations", "Guest Services", "F&B", "IT", "MICE"]
 schemes = ["One-time", "Monthly", "Annually"]
 
 # create users
@@ -20,11 +20,12 @@ end
 	name_arr = cname.gsub(",", "").downcase.split(" ")
 	hotelier = Hotelier.create!(email: "vendor-#{name_arr.first}@hotelhero.tech", password: "password", name: cname)
 	5.times do
-		category = categories.sample
-		suite = hotelier.software_suites.create!(category: category)
-		softwares = Software.where(category: category)
-		rand(1..5).times do
-			suite.subscriptions.create!(payment_scheme: schemes.sample, software: softwares.sample)
+		categories.each do |category|
+			suite = hotelier.software_suites.create!(category: category)
+			softwares = Software.where(category: category)
+			rand(1..5).times do
+				suite.subscriptions.create!(payment_scheme: schemes.sample, software: softwares.sample)
+			end
 		end
 	end
 end
@@ -34,11 +35,12 @@ end
 end
 
 5.times do
-	category = categories.sample
-	suite = first_hotelier.software_suites.create!(category: category)
-	softwares = Software.where(category: category)
-	rand(1..5).times do
-		suite.subscriptions.create!(payment_scheme: schemes.sample, software: softwares.sample)
+	categories.each do |category|
+		suite = first_hotelier.software_suites.create!(category: category)
+		softwares = Software.where(category: category)
+		rand(1..5).times do
+			suite.subscriptions.create!(payment_scheme: schemes.sample, software: softwares.sample)
+		end
 	end
 end
 

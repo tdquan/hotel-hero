@@ -1,1 +1,37 @@
-hotelier_dashboard
+<div class="row my-5">
+	<div class="col-sm-3">
+		<ul class="list-group">
+			<% @sorted.each do |category, _| %>
+		  	<li class="list-group-item"><%= category %></li>
+		  <% end %>
+		</ul>
+	</div>
+	<div class="col-sm-9">
+		<% @sorted.each do |category, suites| %>
+			<section class="mb-5">
+				<h3 class="mb-5"><%= category %></h3>
+				<% suites.each do |suite| %>
+					<div class="card-columns">
+						<% suite.softwares.each do |software| %>
+							<%= link_to h_software_path(software), class: "card" do %>
+						    <%= image_tag software.logo_url, class: "card-img-top p-3" %>
+						    <div class="card-body">
+						      <h5 class="card-title"><%= software.name %></h5>
+						      <p class="card-text"><%= Faker::Company.catch_phrase %></p>
+						    </div>
+						  <% end %>
+						<% end %>
+					</div>
+				<% end %>
+			</section>
+			<hr>
+		<% end %>
+		<section>
+			<div class="card-columns">
+				<%= link_to h_softwares_path, class: "card" do %>
+			    <%= image_tag "https://place-hold.it/300x300?text=Add%20software&fontsize=25", class: "card-img-top" %>
+			  <% end %>
+			</div>
+		</section>
+	</div>
+</div>

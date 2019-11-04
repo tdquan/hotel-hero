@@ -1,35 +1,30 @@
 <div class="row my-5">
 	<div class="col-sm-3">
 		<ul class="list-group">
-			<% @sorted.each do |category, _| %>
+			<% @sorted_by_category.keys.each do |category| %>
 		  	<li class="list-group-item"><%= category %></li>
 		  <% end %>
 		</ul>
 	</div>
 	<div class="col-sm-9">
-		<% @sorted.each do |category, softwares| %>
+		<% @sorted_by_category.each do |category, softwares| %>
 			<section class="mb-5">
 				<h3 class="mb-5"><%= category %></h3>
 				<div class="card-columns">
 					<% softwares.each do |software| %>
-						<div class="card">
+						<% d = @hotelier_softwares.include?(software) ? true : false %>
+						<%= link_to h_software_path(software), class: "card", disabled: d do %>
 					    <%= image_tag software.logo_url, class: "card-img-top p-3" %>
 					    <div class="card-body">
 					      <h5 class="card-title"><%= software.name %></h5>
 					      <p class="card-text"><%= Faker::Company.catch_phrase %></p>
 					    </div>
-					  </div>
+					  <% end %>
 					<% end %>
 				</div>
 			</section>
 			<hr>
 		<% end %>
-		<section>
-			<div class="card-columns">
-				<%= link_to new_v_software_path, class: "card" do %>
-			    <%= image_tag "https://place-hold.it/300x300?text=Add%20software&fontsize=25", class: "card-img-top" %>
-			  <% end %>
-			</div>
-		</section>
 	</div>
 </div>
+
