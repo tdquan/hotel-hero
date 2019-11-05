@@ -12,8 +12,7 @@
 					<h3 class="mb-5"><%= category %></h3>
 					<div class="card-columns">
 						<% softwares.each do |software| %>
-							<% d = @hotelier_softwares.include?(software) ? true : false %>
-							<%= link_to h_software_path(software), class: "card", disabled: d do %>
+							<%= link_to h_software_path(software), class: "card" do %>
 						    <%= image_tag software.logo_url, class: "card-img-top p-3" %>
 						    <div class="card-body">
 						      <h5 class="card-title"><%= software.name %></h5>
@@ -31,8 +30,7 @@
 					<h3 class="mb-5"><%= company.name %></h3>
 					<div class="card-columns">
 						<% softwares.each do |software| %>
-							<% d = @hotelier_softwares.include?(software) ? true : false %>
-							<%= link_to h_software_path(software), class: "card", disabled: d do %>
+							<%= link_to h_software_path(software), class: "card" do %>
 						    <%= image_tag software.logo_url, class: "card-img-top p-3" %>
 						    <div class="card-body">
 						      <h5 class="card-title"><%= software.name %></h5>

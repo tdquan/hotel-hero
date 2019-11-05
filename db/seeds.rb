@@ -22,7 +22,7 @@ end
 	categories.each do |category|
 		suite = hotelier.software_suites.create!(category: category)
 		softwares = Software.where(category: category)
-		rand(1..5).times do
+		rand(1..2).times do
 			suite.subscriptions.create!(payment_scheme: schemes.sample, software: softwares.sample)
 		end
 	end
@@ -35,7 +35,7 @@ end
 categories.each do |category|
 	suite = first_hotelier.software_suites.create!(category: category)
 	softwares = Software.where(category: category)
-	rand(1..5).times do
+	rand(1..2).times do
 		suite.subscriptions.create!(payment_scheme: schemes.sample, software: softwares.sample)
 	end
 end
