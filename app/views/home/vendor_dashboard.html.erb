@@ -1,14 +1,15 @@
 <div class="row my-5">
 	<div class="col-sm-3">
-		<ul class="list-group">
-			<% @sorted.each do |category, _| %>
-		  	<li class="list-group-item"><%= category %></li>
+		<nav class="list-group nav">
+			<%= link_to "All", "#all", class: "list-group-item active", id: "show-all", data: { toggle: "tab", target: "#all" } %>
+			<% @sorted.keys.sort.each do |category| %>
+				<%= link_to category, "##{category.downcase.split(" ").join('-').split("&").join}", class: "list-group-item tab-item", data: { toggle: "tab", target: "##{category.downcase.split(" ").join('-').split("&").join}" } %>
 		  <% end %>
-		</ul>
+		</nav>
 	</div>
-	<div class="col-sm-9">
+	<div class="col-sm-9 tab-content">
 		<% @sorted.each do |category, softwares| %>
-			<section class="mb-5">
+			<section class="mb-5 tab-pane active" id=<%= category.downcase.split(" ").join('-').split("&").join %>>
 				<h3 class="mb-5"><%= category %></h3>
 				<div class="card-columns">
 					<% softwares.each do |software| %>
@@ -21,8 +22,8 @@
 					  </div>
 					<% end %>
 				</div>
+				<hr>
 			</section>
-			<hr>
 		<% end %>
 		<section>
 			<div class="card-columns">
@@ -33,3 +34,9 @@
 		</section>
 	</div>
 </div>
+
+<% content_for :after_js do %>
+	<script>
+		manageTab();
+	</script>
+<% end %>
