@@ -23,10 +23,10 @@
 					<% end %>
 					<%= f.input :software_id, input_html: { value: @software.id, type: "hidden" }, label: false %>
 					<%= f.submit "Add Software", class: "btn btn-primary" %>
-					<%= link_to "Back", h_softwares_path, class: "btn btn-outline-secondary" %>
+					<%= link_to "Back", url_for(:back), class: "btn btn-outline-secondary" %>
 				<% end %>
 			<% else %>
-				<%= link_to "Back", h_softwares_path, class: "btn btn-outline-secondary" %>
+				<%= link_to "Back", url_for(:back), class: "btn btn-outline-secondary" %>
 			<% end %>
 	</div>
 </div>
