@@ -47,7 +47,7 @@ group :development do
   gem 'faker', '~> 2.6.0'
   gem 'pry-byebug', '~> 3.7.0'
   gem 'pry-rails', '~> 0.3.9'
-  gem 'better_errors', '~> 2.5.1'
+  gem 'better_errors', '~> 2.8.0'
   gem 'binding_of_caller', '~> 0.8.0'
 end
 
